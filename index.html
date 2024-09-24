@@ -1,0 +1,122 @@
+<DCOTYPE>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UFS-8">
+</head>
+<style>
+body {
+  background: black;
+  color: white;
+}
+.aaa {
+  background: none;
+  padding: 19px;
+  padding-bottom: 50px;
+  width: 300px;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid white;
+}
+
+button {
+  border-radius: 8px;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  width: 250px;
+  margin-top: 10px;
+  transition: all, 1s;
+}
+
+button:hover {
+  background: white;
+  color: black;
+  width: 300px;
+}
+
+.group {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+  margin: 50px;
+}
+
+img {
+  width: 300px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+  
+.model{
+  width: 100px;
+  border-radius: 8px;
+  padding: 13px;
+  color: white;
+  margin-top: 20px;
+  background: none;
+}
+
+.loader {
+  margin-left: 100px;
+  margin-top: 100px;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid gray;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden{
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    display: none;
+  }
+}
+</style>
+<html>
+<body>
+  <div class="group">
+    <textarea class="aaa" type="text" id="search" placeholder="Enter You Prompt"></textarea>
+    <select class="model" id="model" placeholder="enter">
+      <option value="Realism">Realistic</option>
+      <option value="Cartoon">Cartoon</option>
+      <option value="Anime">Anime</option>
+    </select>
+    <button type="submit" onclick="generate()"><h4 id="text">Generate</h4></button> 
+    <strong id="txt" style="color: red;"></strong>
+    <div id="loading"></div>
+    <img id="display">
+  </div>
+</body>
+</html>
+<script>
+function generate() {
+  let model = document.getElementById("model").value;
+  let search = document.getElementById("search").value;
+  let display = document.getElementById("display");
+  if (search === "") {
+    display.src = "https://www.colorhexa.com/000000.png";
+    document.getElementById("txt").innerText = "Invalid Prompt";
+  } else {
+    document.getElementById("txt").innerText = "";
+    display.src = `https://image.pollinations.ai/prompt/${search}, ${model}, width=2000, height=1000`;
+  }
+}
+</script>
